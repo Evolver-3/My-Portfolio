@@ -26,23 +26,23 @@ const Navbar = () => {
   const [hovered,setHovered]=useState();
   const {scrollY}=useScroll();
 
-  const[shadow,setShadow]=useState("")
+  const[shadow,setShadow]=useState(false)
+
 
   useMotionValueEvent(scrollY,"change",(latest)=>{
-    if(latest>20){
-      setShadow(true)
-    }else{
-      setShadow(false)
-    }
+   if(latest > 10){
+    setShadow(true);
+   }else{
+    setShadow(false)
+   }
+
   })
 
   return (
     <>
     <motion.nav
-    style={{
-      boxShadow:shadow? 'var(--shadow-acer)':"none"
-    }}
-     className='flex fixed top-0 inset-x-0 max-w-4xlitems-center justify-between p-2'>
+    style={{ boxShadow:shadow?"var(--shadow-acer)":"none"}}
+    className='fixed inset-x-0 top-0 max-w-4xl flex items-center justify-between p-2'>
       <img className='w-10 h-10 rounded-full' src="/profile.jpg" height="100" width="100" alt="profile"></img>
 
       <div className='flex items-center '>
