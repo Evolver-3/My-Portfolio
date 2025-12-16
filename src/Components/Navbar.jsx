@@ -1,5 +1,6 @@
 import React, { useState } from 'react' 
 import {motion, useMotionValueEvent, useScroll} from 'motion/react'
+import Container from './Container';
 
 
 const Navbar = () => {
@@ -26,41 +27,60 @@ const Navbar = () => {
   const [hovered,setHovered]=useState();
   const {scrollY}=useScroll();
 
-  const[shadow,setShadow]=useState(false)
+  const[scrolled,setScrolled]=useState(false)
 
 
   useMotionValueEvent(scrollY,"change",(latest)=>{
-   if(latest > 10){
-    setShadow(true);
+   if(latest > 15){
+    setScrolled(true);
    }else{
-    setShadow(false)
+    setScrolled(false)
    }
+   
 
   })
 
   return (
-    <>
+    <Container>
+
     <motion.nav
-    style={{ boxShadow:shadow?"var(--shadow-acer)":"none"}}
-    className='fixed inset-x-0 top-0 max-w-4xl flex items-center justify-between p-2'>
+    animate={{
+       boxShadow:scrolled ? "var(--shadow-acer)" : "none",
+       width:scrolled ? "70%":"100%",
+       y:scrolled ? 10:0,
+       borderRadius:scrolled? "10rem":"0"
+    }}
+    transition={{
+      duration:.3,
+      ease:"easeInOut"
+    }}
+    
+    className='fixed inset-x-0 top-0 mx-auto max-w-4xl flex items-center justify-between p-2 bg-white dark:bg-black md:px-10 '>
+
       <img className='w-10 h-10 rounded-full' src="/profile.jpg" height="100" width="100" alt="profile"></img>
 
-      <div className='flex items-center '>
+      <div className='flex items-center'>
+
         {navItems.map((item,index)=>(
+
           <a href={item.href} key={index} className='text-sm relative px-2 py-1'
           onMouseEnter={()=>setHovered(index)}
-          onMouseLeave={()=>setHovered()}>
+          onMouseLeave={()=>setHovered(null)}>
+
             { hovered ===index &&
               (<motion.span layoutId='hovered-span' className='h-full w-full absolute inset-0 rounded-md bg-neutral-100 dark:bg-neutral-800'>
               </motion.span>)
             }
+
             <span className='z-10 relative'> {item.title} </span>
+
           </a>
         ))}
       </div>
       
     </motion.nav>
-    </>
+    </Container>
+   
   )
 }
 

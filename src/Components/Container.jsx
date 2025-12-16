@@ -1,12 +1,16 @@
 import React from 'react'
-import Navbar from './Navbar'
 
-const Container = ({children}) => {
-  return (
-    <div className='max-w-4xl mx-auto bg-white dark:bg-black p-4 md:p-10'>
-      <Navbar/>
+
+const Container = ({children,className=""}) => {
+  return (<>
+    
+    <div className={`max-w-4xl mx-auto w-full bg-white dark:bg-black  ${className}`}>
+      
+      
       {children}
     </div>
+    
+  </>
   )
 }
 
