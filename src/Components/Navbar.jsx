@@ -1,6 +1,7 @@
 import React, { useState } from 'react' 
 import {motion, useMotionValueEvent, useScroll} from 'motion/react'
 import Container from './Container';
+import Dark from './DarkMode/Dark';
 
 
 const Navbar = () => {
@@ -55,9 +56,11 @@ const Navbar = () => {
       ease:"easeInOut"
     }}
     
-    className='fixed inset-x-0 top-0 mx-auto max-w-4xl flex items-center justify-between p-2 bg-white dark:bg-black md:px-10 '>
+    className=' fixed inset-x-0 top-0 mx-auto max-w-4xl flex items-center justify-between p-2 bg-white md:px-10 '>
 
       <img className='w-10 h-10 rounded-full' src="/profile.jpg" height="100" width="100" alt="profile"></img>
+
+      <Dark/>
 
       <div className='flex items-center'>
 
@@ -68,7 +71,7 @@ const Navbar = () => {
           onMouseLeave={()=>setHovered(null)}>
 
             { hovered ===index &&
-              (<motion.span layoutId='hovered-span' className='h-full w-full absolute inset-0 rounded-md bg-neutral-100 dark:bg-neutral-800'>
+              (<motion.span layoutId='hovered-span' className='h-full w-full absolute inset-0 rounded-md bg-neutral-100 '>
               </motion.span>)
             }
 

@@ -1,13 +1,11 @@
-import Navbar from "./Components/Navbar"
-import Body from "./Components/Body"
+import React from 'react'
+import Navbar from './Components/Navbar'
 
 const App = () => {
-  return (<>
-    <Navbar/>
-    <div className="min-h-screen flex items-center justify-center bg-neutral-100 dark:bg-neutral-700">
-      <Body/>
+  return (
+    <div className=''>
+      <Navbar/>
     </div>
-   </>
   )
 }
 
